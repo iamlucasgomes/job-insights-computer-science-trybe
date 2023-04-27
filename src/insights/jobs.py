@@ -5,18 +5,6 @@ import csv
 
 @lru_cache
 def read(path: str) -> List[Dict]:
-    """Reads a file from a given path and returns its contents
-
-    Parameters
-    ----------
-    path : str
-        Full path to file
-
-    Returns
-    -------
-    list
-        List of rows as dicts
-    """
     dictionary = []
     with open(path) as file:
         list = csv.DictReader(file)
@@ -26,21 +14,13 @@ def read(path: str) -> List[Dict]:
 
 
 def get_unique_job_types(path: str) -> List[str]:
-    """Checks all different job types and returns a list of them
+    file = read(path)
+    unique_job_types = set()
 
-    Must call `read`
+    for job in file:
+        unique_job_types.add(job["job_type"])
 
-    Parameters
-    ----------
-    path : str
-        Must be passed to `read`
-
-    Returns
-    -------
-    list
-        List of unique job types
-    """
-    raise NotImplementedError
+    return unique_job_types
 
 
 def filter_by_job_type(jobs: List[Dict], job_type: str) -> List[Dict]:
