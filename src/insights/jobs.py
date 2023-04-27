@@ -15,10 +15,9 @@ def read(path: str) -> List[Dict]:
 
 def get_unique_job_types(path: str) -> List[str]:
     file = read(path)
-    unique_job_types = set()
-
-    for job in file:
-        unique_job_types.add(job["job_type"])
+    unique_job_types = set(
+        [job["job_type"] for job in file if job["job_type"]]
+    )
 
     return unique_job_types
 
