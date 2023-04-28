@@ -1,5 +1,6 @@
 from typing import Union, List, Dict
 from .jobs import read
+import sys
 
 
 def get_max_salary(path: str) -> int:
@@ -39,18 +40,12 @@ def matches_salary_range(job: Dict, salary: Union[int, str]) -> bool:
 def filter_by_salary_range(
     jobs: List[dict], salary: Union[str, int]
 ) -> List[Dict]:
-    """Filters a list of jobs by salary range
-
-    Parameters
-    ----------
-    jobs : list
-        The jobs to be filtered
-    salary : int
-        The salary to be used as filter
-
-    Returns
-    -------
-    list
-        Jobs whose salary range contains `salary`
-    """
-    raise NotImplementedError
+    salary_within_expectations = []
+    for job in jobs:
+        try:
+            salary_range = matches_salary_range(job, salary)
+            if salary_range:
+                salary_within_expectations.append(job)
+        except ValueError:
+            print(f"{job} contém um valor invalido", file=sys.stderr)
+    return salary_within_expectations
