@@ -26,16 +26,16 @@ from src.flask_app.more_insights import (
 bp = Blueprint("client", __name__, template_folder="templates")
 
 
-@bp.route("/.images/job.png")
+@bp.route("/src/images/job.png")
 def flask_image():
-    return send_file("../../.images/job.png", mimetype="image/png")
+    return send_file("../../src/images/job.png", mimetype="image/png")
 
 
 @bp.route("/")
 def index():
     md = """
 <p align="center">
-    <img src="/.images/job.png" alt="Logo da Aplicação" width="800"/>
+    <img src="src/images/job.png" alt="Logo da Aplicação" width="800"/>
 </p>
 <h2 align="center">
     Boas-vindas ao Job Insights<br><br>
