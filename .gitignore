@@ -110,6 +110,7 @@ celerybeat.pid
 # Environments
 # .env desabilitado para reste projeto em específico
 .venv
+.env
 env/
 venv/
 ENV/
